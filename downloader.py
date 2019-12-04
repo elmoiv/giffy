@@ -1,13 +1,20 @@
-import requests, colors
+import urllib.request, colors
 
-def download(url, filename):
-    with open(filename, 'wb') as f:
-        response = requests.get(url, stream=True, headers= {'User-Agent': 'Mozilla/5.0'})
-        total = int(response.headers.get('content-length'))
-        downloaded = 0
-        for data in response.iter_content(chunk_size = max(int(total / 1000), 1024**2)):
-            f.write(data)
-            downloaded += len(data)
-            percent = int((downloaded / total) * 100)
-            colors.print_info('Downloading: ', '{}%'.format(percent), start='\r', end='\r')
-        print()
+def reporthook(blocknum, blocksize, totalsize):
+    readsofar = blocknum * blocksize
+    percent = int((readsofar * 1e2 / totalsize) / 2)
+
+    r_size = totalsize / 1024**2
+    d_size = readsofar / 1024**2
+
+    pgbar = '[{}{}] '.format('█' * percent, ' ' * (50 - percent)) + '[{0:.2f}/{1:.2f} MB]'.format(d_size, r_size)
+
+    colors.print_info('Downloading: ', pgbar, start='\r', end='\r')
+
+def download(url, output_path):
+    # Avoid urllib.error.HTTPError: HTTP Error 403: Forbidden
+    # https://stackoverflow.com/a/34957875/5305953
+    opener = urllib.request.URLopener()
+    opener.addheader('User-Agent', 'Mozilla/5.0')
+    opener.retrieve(url, filename=output_path, reporthook=reporthook)
+    print()
