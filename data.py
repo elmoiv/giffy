@@ -19,61 +19,67 @@
 data = \
 {
     'Giphy':{
-        're': (r'(https|http)?:\/\/(www\.)?giphy\.com\/gifs\/([a-z-]+)(?<=-)([a-zA-Z0-9-]+)', 4),
+        're': (r'((http|https):\/\/)?(www\.)?giphy\.com\/gifs\/(([a-z-]+)(?<=-))?([a-zA-Z0-9-]+)', 6),
         'op': 'https://i.giphy.com/media/{}/giphy.mp4',
         'ext': 'mp4',
         'scrape': None
     },
     'Tenor':{
-        're': (r'(https|http)?:\/\/(www\.)?tenor\.com\/view\/(.*)(?<=-)(\d+)', 3),
+        're': (r'((http|https):\/\/)?(www\.)?tenor\.com\/view\/(.*)(?<=-gif)-(\d+)', 4),
         'op': None,
         'ext': 'gif',
-        'scrape': 'soup.find("meta",  {"name":"twitter:image"})["content"].split("?")[0]'
+        'scrape': 'soup.find("meta",  {"property":"og:image"})["content"]'
+    },
+    'Tenor : Source':{
+        're': (r'((http|https):\/\/)?media\d\.tenor\.co\/images\/([a-f0-9]+)\/tenor\.gif', 3),
+        'op': None,
+        'ext': 'gif',
+        'scrape': 'url_input'
     },
     'Gfycat':{
-        're': (r'(https|http)?:\/\/(www\.)?gfycat\.com\/(.*)', 3),
+        're': (r'((http|https):\/\/)?(www\.)?gfycat\.com\/([a-z-]+)', 4),
         'op': None,
-        'ext': 'mp4',
-        'scrape': 'soup.find("meta",  {"property":"og:video"})["content"]'
+        'ext': 'gif',
+        'scrape': 'soup.find("meta",  {"property":"og:url"})["content"]'
     },
     'Reaction GIFs':{
-        're': (r'(https|http)?:\/\/(www\.)?reactiongifs\.com\/(.*)(?<=\w)', 3),
+        're': (r'((http|https):\/\/)?(www\.)?reactiongifs\.com\/([a-z0-9-]+)', 4),
         'op': None,
         'ext': 'gif',
         'scrape': 'soup.find("meta",  {"property":"og:image"})["content"]'
     },
     'GIFbin':{
-        're': (r'(https|http:\/\/)?(www\.)?gifbin\.com\/(\d+)', 3),
+        're': (r'((http|https):\/\/)?(www\.)?gifbin\.com\/(\d+)', 4),
         'op': None,
         'ext': 'mp4',
-        'scrape': 'soup.find("meta",  {"property":"og:video"})["content"].split("&")[0].split("=")[-1]'
+        'scrape': 'soup.find("source",  {"type":"video/mp4"})["src"]'
     },
     'Imgflip':{
-        're': (r'(https|http)?:\/\/(www\.)?imgflip\.com\/gif\/(.*)', 3),
+        're': (r'((http|https):\/\/)?(www\.)?imgflip\.com\/gif\/([a-z0-9]+)', 4),
         'op': 'https://i-download.imgflip.com/{}.gif',
         'ext': 'gif',
         'scrape': None
     },
     'Tumblr':{
-        're': (r'(https|http)?:\/\/\w+\.tumblr\.com\/post\/(\d+)', 2),
+        're': (r'((http|https):\/\/)?\w+\.tumblr\.com\/post\/(\d+)', 3),
         'op': None,
         'ext': 'gif',
         'scrape': 'soup.find("meta",  {"property":"og:image"})["content"][:-1]'
     },
     'Twitter':{
-        're': (r'(https|http)?:\/\/(www\.)?twitter\.com\/(.*)(?<=status\/)(\d+)', 4),
+        're': (r'((http|https):\/\/)?(www\.)?twitter\.com\/(.*)(?<=status\/)(\d+)', 5),
         'op': None,
         'ext': 'mp4',
         'scrape': '"https://video.twimg.com/tweet_video/"+soup.find("meta",  {"property":"og:image"})["content"][:-4].split("/")[-1]+".mp4"'
     },
     'Imgur':{
-        're': (r'(https|http)?:\/\/(www\.)?imgur\.com\/(.*)(?<=\/)(.*)', 4),
+        're': (r'((http|https):\/\/)?(www\.)?imgur\.com\/(gallery|\w)\/([a-z]+\/)?([A-Za-z0-9]+)', 6),
         'op': None,
         'ext': 'mp4',
         'scrape': 'soup.find("meta",  {"property":"og:video"})["content"]'
     },
     'Reddit':{
-        're': (r'(https|http)?:\/\/((www|old)\.)?reddit\.com\/r\/(.*)(?<=\/)(.*)', 5),
+        're': (r'((http|https):\/\/)?((www|old)\.)?reddit\.com\/r\/(.*)(?<=comments\/)([a-z0-9_\/]+)', 6),
         'op': None,
         'ext': 'gif',
         'scrape': '''(re.search(r'https:\/\/preview.redd.it\/([a-z0-9]+).gif\?s=[a-f0-9]+', requests.get(url_input+".json", headers={'User-Agent': 'Mozilla/5.0'}).text)).group(0)'''
