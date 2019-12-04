@@ -9,7 +9,7 @@ def print_info(title, extra='', start='', end='\n'):
         Fore.WHITE + "[" +
         Fore.GREEN + "+" +
         Fore.WHITE + "] " +
-        Fore.GREEN + title +
+        Fore.GREEN + title.ljust(15) +
         Fore.YELLOW + extra,
         end=end
         )
@@ -20,7 +20,7 @@ def print_error(title, extra='', start='', end='\n'):
         Fore.WHITE + "[" +
         Fore.RED + "-" +
         Fore.WHITE + "] " +
-        Fore.RED + title +
+        Fore.RED + title.ljust(15) +
         Fore.YELLOW + extra,
         end=end
         )
