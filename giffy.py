@@ -6,6 +6,8 @@ convert = converter.convert
 download = downloader.download
 
 def main(url_input, optimize_gif=False):
+    print_info('Analyzing: ', url_input)
+    
     # Last "/" not needed
     if url_input[-1] == '/':
         url_input = url_input[:-1]
@@ -59,10 +61,9 @@ def main(url_input, optimize_gif=False):
         # Using requests.head to check if file exists without downloading
         # https://stackoverflow.com/a/41546847/5305953
         if requests.head(GIF_RES).status_code != 200:
-            print_error('Error: ', 'Correct media type not found!')
+            print_error('Error: ', 'Connection Error!')
             return
 
-        print_info('Downloading: ', name)
         download(GIF_RES, name)
 
         if child['ext'] != 'gif':
@@ -86,5 +87,3 @@ def dl(a, b=False):
         main(a, b)
     except KeyboardInterrupt:
         print_error('Result: ', 'Interrupted!')
-
-dl(input('URL: '), True)
