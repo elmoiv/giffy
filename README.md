@@ -1,3 +1,19 @@
-# giffy
+# Giffy
+**Universal tool to download GIFs from many providers.**
 
-project is still in BETA stage
+### Current supported providers
+  - Twitter
+  - Reddit
+  - Tumblr
+  - Giphy
+  - Tenor
+  - Imgur
+  - Gfycat
+  - GIFbin
+  - Reaction GIFs
+  - Imgflip
+
+
+```diff
+- project is still in BETA stage
+```
