@@ -1,17 +1,13 @@
-import urllib.request
-from tqdm import tqdm
+import requests, colors
 
-class DownloadProgressBar(tqdm):
-    def update_to(self, b=1, bsize=1, tsize=None):
-        if tsize is not None:
-            self.total = tsize
-        self.update(b * bsize - self.n)
-
-def download(url, output_path):
-    # Avoid urllib.error.HTTPError: HTTP Error 403: Forbidden
-    # https://stackoverflow.com/a/34957875/5305953
-    opener = urllib.request.URLopener()
-    opener.addheader('User-Agent', 'Mozilla/5.0')
-    
-    with DownloadProgressBar(unit='B', unit_scale=True, miniters=1, desc=url.split('/')[-1]) as t:
-        opener.retrieve(url, filename=output_path, reporthook=t.update_to)
+def download(url, filename):
+    with open(filename, 'wb') as f:
+        response = requests.get(url, stream=True, headers= {'User-Agent': 'Mozilla/5.0'})
+        total = int(response.headers.get('content-length'))
+        downloaded = 0
+        for data in response.iter_content(chunk_size = max(int(total / 1000), 1024**2)):
+            f.write(data)
+            downloaded += len(data)
+            percent = int((downloaded / total) * 100)
+            colors.print_info('Downloading: ', '{}%'.format(percent), start='\r', end='\r')
+        print()
