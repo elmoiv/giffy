@@ -1,6 +1,5 @@
 from giffy import dl
 import os
-from colors import print_info
 
 urls = '''https://www.reddit.com/r/gif/comments/e4gmow/karate_move/
 https://giphy.com/gifs/mlb-astros-houston-carlos-correa-SxMF64Np2fUCMlcUdE
@@ -17,6 +16,5 @@ os.makedirs('GIFS', exist_ok=True)
 os.chdir('GIFS')
 
 for url in urls:
-    print_info('Fetching: ', url)
     dl(url, True)
     print()
