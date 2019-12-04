@@ -18,5 +18,5 @@ os.chdir('GIFS')
 
 for url in urls:
     print_info('Fetching: ', url)
-    dl(url, optimize_gif=True)
+    dl(url, True)
     print()
