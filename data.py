@@ -89,6 +89,12 @@ data = \
         'op': 'https://img-9gag-fun.9cache.com/photo/{}_460sv.mp4',
         'ext': 'mp4',
         'scrape': None
+    },
+    'Sizzle':{
+        're': (r'((http|https):\/\/)?(www\.)?onsizzle\.com\/i\/([A-Za-z0-9-]+)(?=-)-([a-f0-9]+)', 4),
+        'op': None,
+        'ext': 'mp4',
+        'scrape': 'soup.find("source",  {"type":"video/mp4"})["src"]'
     }
 }
-# 11 Providers
+# 12 Providers
