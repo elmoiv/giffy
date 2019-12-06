@@ -8,6 +8,7 @@
   - Giphy
   - Tenor
   - Imgur
+  - 9GAG
   - Gfycat
   - GIFbin
   - Reaction GIFs
