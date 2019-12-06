@@ -9,6 +9,7 @@
   - Tenor
   - Imgur
   - 9GAG
+  - Sizzle
   - Gfycat
   - GIFbin
   - Reaction GIFs
