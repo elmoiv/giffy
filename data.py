@@ -83,6 +83,12 @@ data = \
         'op': None,
         'ext': 'gif',
         'scrape': '''(re.search(r'https:\/\/preview.redd.it\/([a-z0-9]+).gif\?s=[a-f0-9]+', requests.get(url_input+".json", headers={'User-Agent': 'Mozilla/5.0'}).text)).group(0)'''
+    },
+    '9GAG':{
+        're': (r'((http|https):\/\/)?(www\.)?9gag\.com\/\w+\/([A-Za-z0-9]+)', 4),
+        'op': 'https://img-9gag-fun.9cache.com/photo/{}_460sv.mp4',
+        'ext': 'mp4',
+        'scrape': None
     }
 }
-# 10 Providers
+# 11 Providers
