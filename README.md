@@ -1,3 +1,7 @@
+```diff
+- project is in BETA stage
+```
+
 # Giffy
 **Universal tool to download GIFs from many providers.**
 
@@ -17,7 +21,5 @@
   - Gifer
   - PANA.GIFS
 
-
-```diff
-- project is still in BETA stage
-```
+### Testing:
+`./run.py` **or** `python run.py`
