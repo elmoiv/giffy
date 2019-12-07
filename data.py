@@ -16,6 +16,7 @@
 #              - Will be passed to eval()
 #              - Prefered to be short and efficent
 
+# 13 Providers
 data = \
 {
     'Giphy':{
@@ -25,7 +26,7 @@ data = \
         'scrape': None
     },
     'Tenor':{
-        're': (r'((http|https):\/\/)?(www\.)?tenor\.com\/view\/(.*)(?<=-gif)-(\d+)', 4),
+        're': (r'((http|https):\/\/)?(www\.)?tenor\.com\/view\/(.*)(?=-)-gif-(\d+)', 4),
         'op': None,
         'ext': 'gif',
         'scrape': 'soup.find("meta",  {"property":"og:image"})["content"]'
@@ -95,6 +96,17 @@ data = \
         'op': None,
         'ext': 'mp4',
         'scrape': 'soup.find("source",  {"type":"video/mp4"})["src"]'
+    },
+    'PANA.GIFS':{
+        're': (r'((http|https):\/\/)?(www\.)?panagif\.com\/gif\/([A-Za-z0-9-]+)', 4),
+        'op': None,
+        'ext': 'gif',
+        'scrape': 'soup.find("source",  {"type":"image/gif"})["src"]'
+    },
+    'Gifer':{
+        're': (r'((http|https):\/\/)?(www\.)?gifer\.com(\/\w\w)?\/([A-Za-z0-9]+)', 5),
+        'op': 'https://i.gifer.com/embedded/download/{}.gif',
+        'ext': 'gif',
+        'scrape': None
     }
 }
-# 12 Providers
