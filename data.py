@@ -16,7 +16,7 @@
 #              - Will be passed to eval()
 #              - Prefered to be short and efficent
 
-# 13 Providers
+# 14 Providers
 data = \
 {
     'Giphy':{
