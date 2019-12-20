@@ -21,8 +21,8 @@ data = \
 {
     'Giphy':{
         're': (r'((http|https):\/\/)?(www\.)?giphy\.com\/gifs\/(([a-z-]+)(?<=-))?([a-zA-Z0-9-]+)', 6),
-        'op': 'https://i.giphy.com/media/{}/giphy.mp4',
-        'ext': 'mp4',
+        'op': 'https://media.giphy.com/media/{}/source.gif',
+        'ext': 'gif',
         'scrape': None
     },
     'Tenor':{
