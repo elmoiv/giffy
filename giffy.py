@@ -73,3 +73,7 @@ def dl(a, b=False):
         main(a, b)
     except KeyboardInterrupt:
         print_error('Result: ', 'Interrupted!')
+
+# if file is executed rather than imported
+if __name__ == '__main__':
+    dl(input('URL: '), True)
