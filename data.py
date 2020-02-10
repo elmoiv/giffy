@@ -3,8 +3,8 @@
 # KEY: Provider name
 #
 # VALUES:
-#     * re: tuple of (1, 2): 1- regex to match url validity
-#                            2- index to get ID of the gif that we will need to name files
+#     * re: tuple of (0, 1): 0: regex to match url validity
+#                            1: index to get ID of the gif that we will need to name files
 #
 #     * op: A direct url that can use "ID" from "re" to download source directly
 #
@@ -71,19 +71,27 @@ data = \
         're': (r'((http|https):\/\/)?(www\.)?twitter\.com\/(.*)(?<=status\/)(\d+)', 5),
         'op': None,
         'ext': 'mp4',
-        'scrape': '"https://video.twimg.com/tweet_video/"+soup.find("meta",  {"property":"og:image"})["content"][:-4].split("/")[-1]+".mp4"'
+        'scrape': '"https://video.twimg.com/tweet_video/"+soup.find("meta",'
+                  '{"property":"og:image"})["content"][:-4].split("/")[-1]+".mp4"'
     },
     'Imgur':{
-        're': (r'((http|https):\/\/)?(www\.)?imgur\.com\/(gallery|\w)\/([a-z]+\/)?([A-Za-z0-9]+)', 6),
+        're': (r'((http|https):\/\/)?i\.imgur\.com\/([A-Za-z0-9]+)', 3),
         'op': None,
         'ext': 'mp4',
         'scrape': 'soup.find("meta",  {"property":"og:video"})["content"]'
+    },
+    'Imgur : Source':{
+        're': (r'((http|https):\/\/)?(www\.)?imgur\.com\/(gallery|\w)\/([a-z]+\/)?([A-Za-z0-9]+)', 6),
+        'op': None,
+        'ext': 'mp4',
+        'scrape': 'url_input'
     },
     'Reddit':{
         're': (r'((http|https):\/\/)?((www|old)\.)?reddit\.com\/r\/(.*)(?<=comments\/)([a-z0-9_\/]+)', 6),
         'op': None,
         'ext': 'gif',
-        'scrape': '''(re.search(r'https:\/\/preview.redd.it\/([a-z0-9]+).gif\?s=[a-f0-9]+', requests.get(url_input+".json", headers={'User-Agent': 'Mozilla/5.0'}).text)).group(0)'''
+        'scrape': r'''(re.search(r'https:\/\/preview.redd.it\/([a-z0-9]+).gif\?s=[a-f0-9]+','''
+                   '''requests.get(url_input+".json", headers={'User-Agent': 'Mozilla/5.0'}).text)).group(0)'''
     },
     '9GAG':{
         're': (r'((http|https):\/\/)?(www\.)?9gag\.com\/\w+\/([A-Za-z0-9]+)', 4),
