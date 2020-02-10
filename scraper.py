@@ -2,6 +2,7 @@ import bs4, requests, re
 from colors import print_error
 
 def extract_url(url, script):
+    # Will be used in data.py for website config
     url_input = url
     soup = None
 
