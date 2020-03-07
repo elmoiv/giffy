@@ -3,22 +3,27 @@ from colorama import Fore, Style, init
 # Colorama module's initialization.
 init(autoreset=True)
 
-def print_info(title, extra='', start='', end='\n'):
-    print(start +
-        Style.BRIGHT +
-        Fore.WHITE   + "["  +
-        Fore.GREEN   + "+"  +
-        Fore.WHITE   + "] " +
-        Fore.GREEN   + title.ljust(15) +
-        Fore.YELLOW  + extra,
-        end=end)
+class Printer:
+    LOG = True
+    
+    def print_info(self, title, extra='', start='', end='\n'):
+        if self.LOG:
+            print(start +
+            Style.BRIGHT +
+            Fore.WHITE   + "["  +
+            Fore.GREEN   + "+"  +
+            Fore.WHITE   + "] " +
+            Fore.GREEN   + title.ljust(15) +
+            Fore.YELLOW  + extra,
+            end=end)
 
-def print_error(title, extra='', start='', end='\n'):
-    print(start +
-        Style.BRIGHT +
-        Fore.WHITE   + "["  +
-        Fore.RED     + "-"  +
-        Fore.WHITE   + "] " +
-        Fore.RED     + title.ljust(15) +
-        Fore.YELLOW  + extra,
-        end=end)
+    def print_error(self, title, extra='', start='', end='\n'):
+        if self.LOG:
+            print(start +
+            Style.BRIGHT +
+            Fore.WHITE   + "["  +
+            Fore.RED     + "-"  +
+            Fore.WHITE   + "] " +
+            Fore.RED     + title.ljust(15) +
+            Fore.YELLOW  + extra,
+            end=end)
