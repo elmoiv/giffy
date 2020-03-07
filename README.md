@@ -5,7 +5,7 @@
 # Giffy
 **Universal tool to download GIFs from many providers.**
 
-### Current supported providers (14):
+### Current supported providers (15):
   - Twitter
   - Reddit
   - Tumblr
