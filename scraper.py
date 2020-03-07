@@ -29,12 +29,14 @@ def extract_url(url, script):
             soup = bs4.BeautifulSoup(page, "html.parser")
         except requests.exceptions.ConnectionError:
             print_error('Result: ', 'Connection Error!')
-            exit()
+            return 0
     try:
         return eval(script)
     except:
         print_error('Result: ', 'Scraper found nothing!')
-        exit()
+        return 0
+        
+    return 1
 
 def check_url(url):
     try:
@@ -43,8 +45,10 @@ def check_url(url):
         # https://stackoverflow.com/a/41546847/5305953
         if requests.head(url).status_code != 200:
             print_error('Result: ', 'No MP4 or GIF found!')
-            exit()
+            return 0
     
     except requests.exceptions.ConnectionError:
         print_error('Result: ', 'Connection Error!')
-        exit()
+        return 0
+    
+    return 1
