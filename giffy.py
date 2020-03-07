@@ -41,6 +41,8 @@ def main(url_input, optimize_gif=False, enable_logging=True):
                 if child['scrape']:
                     log.print_info('Scraping: ', 'In Progress...')
                     GIF_RES = extract_url(url_input, child['scrape'])
+                    if not GIF_RES:
+                        return
                 else:
                     log.print_info('Scraping: ', 'Skipped')
                     # if not scrape, then we perform direct download
@@ -54,7 +56,8 @@ def main(url_input, optimize_gif=False, enable_logging=True):
             name = '{}.{}'.format(ID, child['ext'])
 
             # Check if url is connectable
-            check_url(GIF_RES)
+            if not check_url(GIF_RES):
+                return
 
             # Download mp4/GIF
             download(GIF_RES, name)
