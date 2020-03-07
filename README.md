@@ -7,6 +7,9 @@
 
 ### Current supported providers (15):
   - Twitter
+  ```diff
+  - Twitter removed image meta tag, searching for a solution
+  ```
   - Reddit
   - Tumblr
   - Giphy
