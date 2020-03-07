@@ -116,5 +116,11 @@ data = \
         'op': 'https://i.gifer.com/embedded/download/{}.gif',
         'ext': 'gif',
         'scrape': None
+    },
+    'TikTok':{
+        're': (r'((http|https):\/\/)?(www\.)?tiktok\.com\/@(.*)(?<=video\/)(\d+)', 5),
+        'op': None,
+        'ext': 'mp4',
+        'scrape': 'soup.find("video")["src"]'
     }
 }
