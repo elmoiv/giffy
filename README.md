@@ -20,6 +20,7 @@
   - Imgflip
   - Gifer
   - PANA.GIFS
+  - TikTok
 
 ### Testing:
-`./run.py` **or** `python run.py`
+`./TESTER.py` **or** `python TESTER.py`
