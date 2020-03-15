@@ -10,13 +10,13 @@
 #
 #     * ext: extension of file
 #           - main: gif --> will be downloaded directly
-#           - else: mp4, webm, ... --> will be passed to ffmpeg t be converted to gif
+#           - else: mp4, webm, ... --> will be passed to ffmpeg to be converted to gif
 #
 #     * scrape: if not None, then we add a script that can get url from HTML
 #              - Will be passed to eval()
 #              - Prefered to be short and efficent
 
-# 14 Providers
+# 15 Providers
 data = \
 {
     'Giphy':{
